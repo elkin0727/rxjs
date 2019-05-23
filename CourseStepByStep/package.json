@@ -8,7 +8,7 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "server": "ts-node server/setup.ts"
+    "server": " ts-node --skip-project server/setup.ts"
   },
   "private": true,
   "dependencies": {
@@ -41,8 +41,9 @@
     "karma-coverage-istanbul-reporter": "~2.0.1",
     "karma-jasmine": "~1.1.2",
     "karma-jasmine-html-reporter": "^0.2.2",
+    "mockyeah": "^0.23.2",
     "protractor": "~5.4.0",
-    "ts-node": "~7.0.0",
+    "ts-node": "^7.0.1",
     "tslint": "~5.11.0",
     "typescript": "~2.9.2"
   }
