@@ -14,7 +14,7 @@ export class Step5Component implements OnInit {
     ngOnInit() {
         // Define the observables
         const requestCreatePokemon$ = this.createHTTPPostObservable({
-            name: 'Pikachu'
+            name: 'Tóguepi'
         });
         const clickCreatePokemon$ = fromEvent(document.getElementById('btnCreatePokemon'), 'click');
         const app$ = clickCreatePokemon$.pipe(
