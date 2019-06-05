@@ -15,7 +15,7 @@ export const dataBaseMock = {
             },
             {
                 name: 'Charmilion',
-                nivel: 2
+                nivel: 2 
             }
         ]
     }
@@ -23,13 +23,8 @@ export const dataBaseMock = {
 
 
 export const mockServices = {
-    getPokemonsByName: {
-        pattern: '/api/pokemons',
-        ok: dataBaseMock.pokemons,
-        ko: {
-            status: 200,
-            json: { errorCode: 'UnexpectedException' }
-        }
+    createPokemon: {
+        pattern: '/api/pokemon'
     }
 };
 
