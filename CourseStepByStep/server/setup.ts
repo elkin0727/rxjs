@@ -1,17 +1,10 @@
-const path = require("path");
-const Server = require("mockyeah/server");
+import { mockServices } from "./mock-data";
 const fs = require('fs');
-let jsonDB = JSON.parse(fs.readFileSync('server/db.json'));
+const mockyeahServer = require('mockyeah');
 
-import { mockServices, dataBaseMock } from "./mock-data";
+const jsonDB = JSON.parse(fs.readFileSync('server/db.json'));
 
-const mockyeahServer = new Server({
-    suitesDir: path.join("./server"),
-    watch: true
-});
-
-mockyeahServer.post(mockServices.createPokemon.pattern, function (req, res) {
-    console.log(req)
+mockyeahServer.post(mockServices.pokemon.path, function (req, res) {
     const name = req.body["name"];
 
     setTimeout(() => {
@@ -20,15 +13,21 @@ mockyeahServer.post(mockServices.createPokemon.pattern, function (req, res) {
             nivel: 1
         });
         saveServer();
-
         res.status(200);
         res.send();
     }, 1000);
 });
 
+mockyeahServer.get(mockServices.pokemon.path, { text: 'hello' });
+
 function saveServer(){
-    let data = JSON.stringify(jsonDB);  
-    fs.writeFileSync('server/db.json', data);  
+    let data = JSON.stringify(jsonDB, null, 2);  
+    fs.writeFile('server/db.json', data, function(err) {
+		if(err) {
+		   return console.log(err);
+		}
+		console.log("The file was generated and saved!");
+    }); 	
 }
 
 

@@ -23,8 +23,8 @@ export const dataBaseMock = {
 
 
 export const mockServices = {
-    createPokemon: {
-        pattern: '/api/pokemon'
+    pokemon: {
+        path: '/api/pokemon'
     }
 };
 

@@ -1,3 +1,8 @@
 {
-    "pokemons": []
+  "pokemons": [
+    {
+      "name": "Tóguepi",
+      "nivel": 1
+    }
+  ]
 }

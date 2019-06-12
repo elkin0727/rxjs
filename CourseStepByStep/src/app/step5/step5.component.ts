@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { Observable, fromEvent } from "rxjs";
 import { map } from "rxjs/internal/operators/map";
+import { mergeMap } from "rxjs/operators";
 
 @Component({
     selector: "app-step5",
@@ -18,7 +19,7 @@ export class Step5Component implements OnInit {
         });
         const clickCreatePokemon$ = fromEvent(document.getElementById('btnCreatePokemon'), 'click');
         const app$ = clickCreatePokemon$.pipe(
-            map(() => requestCreatePokemon$.subscribe())
+            mergeMap(() => requestCreatePokemon$)
         );
 
         // Subscribe
