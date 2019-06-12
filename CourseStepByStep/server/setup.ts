@@ -2,7 +2,7 @@ import { mockServices } from "./mock-data";
 const fs = require('fs');
 const mockyeahServer = require('mockyeah');
 
-const jsonDB = JSON.parse(fs.readFileSync('server/db.json'));
+let jsonDB = JSON.parse(fs.readFileSync('server/db.json'));
 
 mockyeahServer.post(mockServices.pokemon.path, function (req, res) {
     const name = req.body["name"];
@@ -18,7 +18,13 @@ mockyeahServer.post(mockServices.pokemon.path, function (req, res) {
     }, 1000);
 });
 
-mockyeahServer.get(mockServices.pokemon.path, { text: 'hello' });
+mockyeahServer.get(mockServices.pokemon.path, function (req, res){
+    setTimeout(() => {
+        jsonDB = JSON.parse(fs.readFileSync('server/db.json'));
+        res.status(200);
+        res.send(jsonDB);
+    }, 1000);
+});
 
 function saveServer(){
     let data = JSON.stringify(jsonDB, null, 2);  
