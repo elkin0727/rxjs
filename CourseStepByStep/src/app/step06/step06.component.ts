@@ -23,7 +23,7 @@ export class Step06Component implements OnInit {
         const pokemons$ = http$.pipe(
             map((response: any) => response.pokemons)
         )
-        pokemons$.subscribe((pokemons: []) => {
+        pokemons$.subscribe((pokemons: Pokemon[]) => {
             this.pokemonsOneLevel = pokemons
                 .filter((pokemon: Pokemon) => pokemon.level === 1);
 
