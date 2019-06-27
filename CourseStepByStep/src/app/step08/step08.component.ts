@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { createHttpGetObservable } from '../common/util';
-import { map, shareReplay } from 'rxjs/operators';
+import { map, shareReplay, tap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-step08',
@@ -18,7 +18,9 @@ export class Step08Component implements OnInit {
         const http$ = createHttpGetObservable('api/pokemon');
 
         const pokemons$ = http$.pipe(
+            tap(() => console.log('http response')),
             map((response: any) => response.pokemons),
+            tap(console.log),
             shareReplay()
         );
 
