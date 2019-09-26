@@ -31,7 +31,6 @@ mockyeahServer.get(mockServices.pokemon.path, function (req, res){
 });
 
 function isSearchPokemonByName(request){
-    console.log(request);
     return request.query['name'];
 }
 
