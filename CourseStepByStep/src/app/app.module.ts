@@ -12,6 +12,7 @@ import { Step07Component } from './step07/step07.component';
 import { Step08Component } from './step08/step08.component';
 import { Step09Component } from './step09/step09.component';
 import { Step010Component } from './step010/step010.component';
+import { Step011Component } from './step011/step011.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { Step010Component } from './step010/step010.component';
     Step07Component,
     Step08Component,
     Step09Component,
-    Step010Component
+    Step010Component,
+    Step011Component
   ],
   imports: [
     BrowserModule
