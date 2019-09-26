@@ -24,7 +24,8 @@ export const dataBaseMock = {
 
 export const mockServices = {
     pokemon: {
-        path: '/api/pokemon'
+        path: '/api/pokemon',
+        pathByName: '/api/pokemon/'
     }
 };
 

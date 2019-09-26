@@ -20,11 +20,30 @@ mockyeahServer.post(mockServices.pokemon.path, function (req, res) {
 
 mockyeahServer.get(mockServices.pokemon.path, function (req, res){
     setTimeout(() => {
-        jsonDB = JSON.parse(fs.readFileSync('server/db.json'));
+        let responseJSON;
+        responseJSON = JSON.parse(fs.readFileSync('server/db.json'));
+        if(isSearchPokemonByName(req)){
+            responseJSON = getPokemonsByName(responseJSON, req.query['name']);
+        }
         res.status(200);
-        res.send(jsonDB);
+        res.send(responseJSON);
     }, 1000);
 });
+
+function isSearchPokemonByName(request){
+    console.log(request);
+    return request.query['name'];
+}
+
+
+function getPokemonsByName(allPokemons, searchText){
+    console.log(allPokemons.pokemons)
+    return {
+        pokemons: allPokemons.pokemons.filter((pokemon) => {
+            return pokemon.name.indexOf(searchText) !== -1;
+        })
+    }
+}
 
 function saveServer(){
     let data = JSON.stringify(jsonDB, null, 2);  
