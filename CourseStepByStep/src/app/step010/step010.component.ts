@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { fromEvent } from 'rxjs';
-import { tap } from 'rxjs/operators';
+import { tap, concatMap } from 'rxjs/operators';
 import { createHttpGetObservable } from '../common/util';
 
 @Component({
@@ -13,15 +13,13 @@ export class Step010Component implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    const inputChangeSearch$ = fromEvent(document.getElementById('inputSearch'), 'keyup')
-        .pipe(
-            tap((keyboardEvent: KeyboardEvent) => {
-                const http$ = createHttpGetObservable('api/pokemon?name=' + (<HTMLInputElement>keyboardEvent.target).value);
-                http$.subscribe();
-            })
-        );
-    inputChangeSearch$.subscribe();
+    const app$ = fromEvent(document.getElementById('inputSearch'), 'keyup').pipe(
+        concatMap((keyboardEvent: KeyboardEvent) =>
+            createHttpGetObservable('api/pokemon?name=' + (<HTMLInputElement>keyboardEvent.target).value)
+        )
+    );
 
+    app$.subscribe();
   }
 
 }
